@@ -1,12 +1,28 @@
-console.log((function isWeekend() {
-  const todayDate = new Date();
-  const day = todayDate.getDay();
+(function isWeekend () {
+    const todayDate = new Date();
+    const day = todayDate.getDay();
+    //const day = 6;
+    console.log(day);
 
-  var titles = {
-    0: "weekend",
-    6: "weekedn",
-    weekday: "weekday"
-  };
+    var selectDay = {
+        0: "weekend",
+        6: "weekend",
+        weekday: "weekday"
+    };
+    console.log ( selectDay[day] || selectDay["weekday"]);
+})();
 
-  return titles[day] || titles["weekday"];
-})());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
