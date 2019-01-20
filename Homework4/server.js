@@ -1,6 +1,7 @@
 const http = require ('http');
 const {fork} = require('child_process');
 const url = require ('url');
+
 const server = http.createServer();
 
 server.on("request", (req, res) => {
@@ -18,6 +19,6 @@ server.on("request", (req, res) => {
     });
 });
 
-server.listen(6060, ()=>{console.log("server running")});
+server.listen(6066, ()=>{console.log("server running")});
 
 // http://localhost:4000/?path/to/my/file.txt
