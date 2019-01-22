@@ -18,11 +18,6 @@ const logger = morgan('common', {
 app.use(logger)
 app.use(cors())
 app.use(bodyParser.json())
-app.use((req, res, next) => {
-    res.header('Content-Type', 'application/json')
-    next()
-})
-
 
 //get list of grades
 app.get('/', function (req, res, next) {
@@ -51,7 +46,6 @@ app.post('/create', [
 
     grades.push(newGrade);
     res.status(201).json(newGrade);
-    //res.status(201).json(grades);
 });
 
 //Update grade
@@ -77,6 +71,7 @@ app.put('/update/:id', [
 
 //delete grade
 app.delete('/delete/:id', function (req, res, next) {
+        --index;
         console.log(req.body);
         errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -88,7 +83,6 @@ app.delete('/delete/:id', function (req, res, next) {
         const newGrades = grades.filter(grade => grade.id != req.params.id);
         grades = newGrades;
         res.status(200).json(grades);
-    //res.status(201).json(grades);
     });
 
 

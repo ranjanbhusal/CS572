@@ -1,0 +1,11 @@
+{
+_id: Object.id(),
+name: 'Modern Web Application',
+ISBN_number: 'MWA572',
+Author: {name: 'Assad Saad', email: 'asaad@mum.edu'},
+keywords: ['mwa', 'modern web application', 'mongo', 'mongodb', 'node', 'angular'],
+borrowed: true,
+borrowed_by: {name: 'Ranjan Bhusal', email: 'rbhusal@mum.edu'},
+borrowed_date: new Date(Jan 22, 2019),
+returning_date: new Date(Feb2, 2019)
+}
