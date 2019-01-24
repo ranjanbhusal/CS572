@@ -5,13 +5,13 @@ const app = express();
 const client = new MongoClient('mongodb://localhost:27017');
 
 let db;
-let collection;
+let collect;
 
 app.use(bodyParser.json());
 
 client.connect(err => {
     db = client.db('gmap');
-    collection = db.collection('gCollection');
+    collect = db.collection('gCollection');
 });
 
 const seedLocations = [
@@ -24,7 +24,35 @@ const seedLocations = [
 
 
 app.get('/', (req, res) => {
+    res.header('Content-Type', 'application/json');
     res.json(seedLocations);
+});
+
+app.post('/addplace', (req, res) => {
+    console.log(req.body);
+    const newLocation = {
+        name: req.body.name,
+        category: req.body.category,
+        location: [parseFloat(req.body.long), parseFloat(req.body.lat)]    
+    };
+
+    seedLocations.push(req.body);
+    collect.insertOne(newLocation, (err, doc) => {
+        res.json({'data': seedLocations});
+    });
+});
+
+app.post('/findplace', (req, res) => {
+    const long = req.body.long;
+    const lat = req.body.lat;
+    console.log(lat);
+    collect.find({
+        location: {$near: [long, lat]}
+    })
+    .limit(1).toArray((err, doc) => {
+        if(err) return res.json({error: err});
+        return res.json({result:doc});
+    });
 });
 
 app.listen(3434, ()=> console.log('listening to 3434'));
