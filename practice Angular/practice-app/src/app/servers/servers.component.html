@@ -1,0 +1,8 @@
+<input type = 'text' #serverNameInput>
+<input type = 'button' (click) = 'onButtonClicked(serverNameInput)' value = 'click me'/>
+
+<hr>
+<!-- <p *ngIf = 'serverCreated'>Server crated {{serverName}}</p> -->
+
+<app-server *ngFor = 'let server of servers' [servername] = 'server'></app-server>
+
