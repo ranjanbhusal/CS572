@@ -1,0 +1,10 @@
+
+<li *ngFor = "let result of results">
+<a [routerLink] = "['detail', result.login.uuid]">
+{{result.name.first}} {{result.name.last}}
+</a>
+</li>
+
+
+user component works!
+
